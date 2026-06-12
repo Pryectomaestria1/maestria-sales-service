@@ -20,12 +20,15 @@ directorio-padre/
 ```
 
 ### 2. Base de Datos (Prisma)
-Asegúrate de tener la infraestructura de Docker encendida (`docker-compose up -d` en el gateway) y aplica el esquema de la base de datos:
+Asegúrate de tener la infraestructura de Docker encendida (`docker-compose up -d` en el gateway) y configura la conexión a la base de datos **independiente** de este servicio:
 
 ```bash
+cp .env.example .env
 npm install
-npx prisma db push
+npm run prisma:push
 ```
+
+Este servicio usa la base de datos `sales_db` (no compartida con otros microservicios).
 
 ### 3. Ejecución del Servicio
 Inicia el microservicio en modo desarrollo (corre en el puerto gRPC `50055`):
